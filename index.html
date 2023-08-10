@@ -1,88 +1,64 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <title>Movie Search Website</title>
-   
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <link rel = "stylesheet" href = "style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<link rel="stylesheet" href="./style.css">
 </head>
-<body>
-    <div class="main " style="">
-        <div class="container text-center" style="">
-            <h1>Movie <span> Corner</span> </h1>
-        </div>
+<body class="" style="background-image: url(./image/wallpapersden.com_oppenheimer-official-5k-poster_5120x2858.jpg); background-size:cover;">
 
-        <div class="con" style="">
-        <div class = "search-container container mt-5 p-2  " style=";">
-            <div class = "search-element  ">
-                <!-- <h4>Search Movie Here:</h4> -->
-                <input type = "text" class = "form-control w-50 text-center  mt-3" placeholder="Search Movie Title ..." id = "movieSearch">
-                
-                    <button onclick="accessData()" type="button" class="btn btn-outline-info mt-4">Search</button>
-                    
-                <div class = "info " id = "result">
-                </div>
-                   
+    <div class="container w-75 p-3 mt-5 text-center text-white " style="background-color:  rgba(27, 2, 20, 0.322); border-radius: 5px; box-shadow: inset  -5px  -5px 12px #a14216, inset 5px 5px 12px rgba(0,0,0,0.2);
+    border: none;">
+        
+        <h1 style="color: rgb(240, 229, 229); font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" >MOVIE CORNER</h1>
 
-                </div>
-            </div>
+        <input id="moviename" placeholder="SEARCH BY TITLE"  type="text" class="form-control mt-5" style="background-color: rgba(0, 0, 0, 0.74);">
+
+        <button onclick="movieSearch()"  type="button" class=" mt-4" style="width: 150px; height: 50px;border-radius: 5px; background-color: rgba(102, 26, 13, 0.719); ">Search</button>
+
+
+        <div id="result" class="container w-100  mt-2 text-center"  style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; background-color:rgba(131, 43, 17, 0.685);color: rgb(231, 221, 221);">
+        
         </div>
-    </div>
+    </div>     
+    
+
+    <div></div>
 </body>
-<script>
-    function accessData(){
-        movie=movieSearch.value
+<script >
 
-       
+function movieSearch(){
+        movie=moviename.value
+        fetch(`http://www.omdbapi.com/?t=${movie}&apikey=abd160a8`).then(data=>data.json()).then(cData=>displayData(cData))
 
-        fetch(`http://www.omdbapi.com/?t=${movie}&apikey=abd160a8`).then(data=>data.json()).then(cdata=>displayData(cdata))
+    function displayData(dataArray){
+        name=movie
+        image=dataArray.Poster
+        Year=dataArray.Year
+        director = dataArray.Director
+        
+      
+     
 
-        function displayData(dataArray){
-            name=movie
-            image=dataArray.Poster
-            Year=dataArray.Year
-            Director=dataArray.Director
-
-            result.innerHTML = `
-            <div class="card bg-black text-white border" style="width: 25rem;">
-
-  <div class="card-body card1">
-    <h5 class="card-title">${name}</h5>
-    <img src="${image}" alt=""> 
-    <p class="card-text">Year - ${Year}</p>
-  </div>
-
-
-</div>`
-        }
+        result.innerHTML=`
+       <div style="color: rgb(159, 220, 16);">
+            <h2 style="color:yellow;"> ${name}</h2>
+            <div class="im">
+                <img src="${image}" alt="">
+                </div>
+                <h3 style="color:black;">${director}</h3>
+           
+            <p style="color:black;" >Year - ${Year}</p>
+           
+       </div>`
     }
+}
 </script>
+
+
+
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
