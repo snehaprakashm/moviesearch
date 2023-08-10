@@ -1,0 +1,18 @@
+#movie-search-box{
+    background-color: rgb(20, 20, 5);
+    color:white;
+ 
+}
+body{
+    /* background-image: url(./images/mia-wallace-uma-thurman-pulp-fiction-artwork-simple-background-movies-wallpaper-thumb.jpg); */
+   background-size: cover;
+   background-image: url(./images/wallpapersden.com_oppenheimer-official-5k-poster_5120x2858.jpg);
+}
+.srch{
+    background-color: white;
+    
+}
+.card1{
+    /* width:500px; */
+    background-color: rgba(249, 253, 252, 0.144);
+}
